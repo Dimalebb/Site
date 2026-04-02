@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1406ba7f-7fa8-4a7c-a4fe-137ed2b7949b" name="Changes" comment="Laba 2">
+    <list default="true" id="1406ba7f-7fa8-4a7c-a4fe-137ed2b7949b" name="Changes" comment="Laba 3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DjangoProject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoProject/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DjangoProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DjangoProject/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labs/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/labs/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/labs/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,6 +112,8 @@
       <workItem from="1772182165967" duration="1007000" />
       <workItem from="1772188260587" duration="2850000" />
       <workItem from="1772745683662" duration="74000" />
+      <workItem from="1773352890664" duration="2091000" />
+      <workItem from="1775166319872" duration="1397000" />
     </task>
     <task id="LOCAL-00001" summary="Laba 2">
       <option name="closed" value="true" />
@@ -128,7 +131,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771537605294</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Laba 3">
+      <option name="closed" value="true" />
+      <created>1773353166935</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1773353166936</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -147,6 +158,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Laba 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Laba 2" />
+    <MESSAGE value="Laba 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Laba 3" />
   </component>
 </project>
