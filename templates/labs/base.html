@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>{% block title %}Ігрові ПК{% endblock %}</title>
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+<header class="header">
+<div class="header-container">
+
+    <div class="logo">
+        <a href="{% url 'home' %}">PC Shop</a>
+    </div>
+
+    <nav class="nav">
+        <a href="{% url 'home' %}" class="nav-item">Головна</a>
+
+        {% for category in categories %}
+            <a href="?category={{ category.id }}" class="nav-item">
+                {{ category.name }}
+            </a>
+        {% endfor %}
+    </nav>
+
+    <div class="search">
+        <form method="get">
+            <input type="text" name="q" placeholder="Пошук" value="{{ request.GET.q }}">
+        </form>
+    </div>
+
+</div>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <p>© 2026 Ігрові ПК</p>
+</footer>
+
+</body>
+</html>

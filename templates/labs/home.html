@@ -1,0 +1,26 @@
+{% extends "labs/base.html" %}
+
+{% block title %}Головна{% endblock %}
+
+{% block content %}
+
+<h2>Наші товари</h2>
+
+<div class="products">
+
+{% for product in products %}
+
+<div class="card">
+    <h3>{{ product.name }}</h3>
+    <p class="price">{{ product.price }} грн</p>
+    <p><b>Категорія:</b> {{ product.category }}</p>
+    <p><b>Бренд:</b> {{ product.brand }}</p>
+</div>
+
+{% empty %}
+<p>Товарів немає</p>
+{% endfor %}
+
+</div>
+
+{% endblock %}
