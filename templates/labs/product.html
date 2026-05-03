@@ -1,0 +1,48 @@
+{% extends "labs/base.html" %}
+
+{% block content %}
+
+<div class="product-page">
+
+    <!-- ТАБИ -->
+    <div class="tabs">
+        <span class="active">Опис</span>
+        <span>Відгуки</span>
+    </div>
+
+    <div class="product-container">
+
+        <!-- ЛІВО -->
+        <div class="product-left">
+            <img src="{{ product.image.url }}">
+        </div>
+
+        <!-- ПРАВО -->
+        <div class="product-right">
+
+            <h1 class="product-name">{{ product.name }}</h1>
+
+            <div class="status">В наявності</div>
+
+            <div class="price-block">
+                <div class="price">{{ product.price }} грн</div>
+                <div class="credit">Від 500 грн/міс</div>
+            </div>
+
+            <button class="buy-btn">Купити</button>
+            <a href="#" class="credit-link">Купити в кредит</a>
+
+            <div class="short-info">
+                {{ product.category }} / {{ product.brand }}
+            </div>
+
+            <div class="meta">
+                <div>✔ Гарантія 12 міс</div>
+                <div>↩ Повернення 14 днів</div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -20,3 +20,6 @@ def home(request):
     }
 
     return render(request, 'labs/home.html', context)
+def product_detail(request, id):
+    product = Product.objects.get(id=id)
+    return render(request, 'labs/product.html', {'product': product})

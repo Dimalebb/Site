@@ -1,7 +1,5 @@
 {% extends "labs/base.html" %}
 
-{% block title %}Головна{% endblock %}
-
 {% block content %}
 
 <h2>Наші товари</h2>
@@ -9,14 +7,31 @@
 <div class="products">
 
 {% for product in products %}
+<a href="{% url 'product' product.id %}" class="card-link">
+<div class="shoe-card">
 
-<div class="card">
-    <h3>{{ product.name }}</h3>
-    <p class="price">{{ product.price }} грн</p>
-    <p><b>Категорія:</b> {{ product.category }}</p>
-    <p><b>Бренд:</b> {{ product.brand }}</p>
+  <div class="shoe-img">
+    {% if product.image %}
+      <img src="{{ product.image.url }}">
+    {% endif %}
+  </div>
+
+  <div class="shoe-text">
+    <span class="shoe-title">
+        {{ product.name }}
+    </span>
+
+    <span class="shoe-subtitle">
+        {{ product.brand }}
+    </span>
+
+    <span class="shoe-price">
+        {{ product.price }} грн
+    </span>
+  </div>
+
 </div>
-
+</a>
 {% empty %}
 <p>Товарів немає</p>
 {% endfor %}
