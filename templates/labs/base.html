@@ -5,10 +5,9 @@
 <head>
 <meta charset="UTF-8">
 <title>{% block title %}Ігрові ПК{% endblock %}</title>
-
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-
 <body>
 
 <header class="header">
@@ -27,13 +26,21 @@
             </a>
         {% endfor %}
     </nav>
-
     <div class="search">
         <form method="get">
             <input type="text" name="q" placeholder="Пошук" value="{{ request.GET.q }}">
         </form>
     </div>
+    <div class="cart-icon" onclick="openCart()">
 
+        🛒
+
+        {% if cart_products %}
+            <span class="cart-count">
+             {{ cart_products|length }}
+            </span>
+        {% endif %}
+    </div>
 </div>
 </header>
 
@@ -43,7 +50,134 @@
 
 <footer>
     <p>© 2026 Ігрові ПК</p>
-</footer>
 
+    <button class="contact-btn" onclick="openModal()">
+        Contact Us
+    </button>
+</footer>
+<div class="modal-overlay" id="contactModal">
+
+    <div class="modal-box">
+
+        <span class="close-modal" onclick="closeModal()">
+            &times;
+        </span>
+
+        <h2>Contact Us</h2>
+
+        <form method="post" action="{% url 'subscribe' %}">
+
+            {% csrf_token %}
+
+            <input type="email" name="email" placeholder="Email" required>
+
+            <input type="text" name="name" placeholder="Ім’я (необов'язково)">
+
+            <label class="checkbox-label">
+
+                <input type="checkbox" name="agreed" required>
+
+                Я погоджуюсь на обробку персональних даних
+
+            </label>
+
+            <button type="submit">
+                Підписатися
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+<div class="cart-sidebar" id="cartSidebar">
+
+    <div class="cart-header">
+
+        <h2>Кошик</h2>
+
+        <span class="close-cart" onclick="closeCart()">
+            &times;
+        </span>
+
+    </div>
+
+    <div class="cart-items">
+
+        {% for item in cart_products %}
+
+        <div class="cart-item">
+
+            <img src="{{ item.image.url }}">
+
+            <div>
+
+                <h4>{{ item.name }}</h4>
+
+                <p>{{ item.price }} грн</p>
+
+                <a href="{% url 'remove_from_cart' item.id %}?cart=open">
+                    Видалити
+                </a>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <p>Кошик порожній</p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+<script>
+window.onload = function() {
+
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get('cart') === 'open') {
+        openCart();
+    }
+}
+function openModal() {
+    document.getElementById('contactModal').style.display = 'flex';
+}
+
+function closeModal() {
+    document.getElementById('contactModal').style.display = 'none';
+}
+
+function openReviewModal() {
+    document.getElementById('reviewModal').style.display = 'flex';
+}
+
+function closeReviewModal() {
+    document.getElementById('reviewModal').style.display = 'none';
+}
+
+function openCart() {
+    document.getElementById('cartSidebar').classList.add('open');
+}
+
+function closeCart() {
+    document.getElementById('cartSidebar').classList.remove('open');
+}
+window.addEventListener('click', function(e) {
+
+    const cart = document.getElementById('cartSidebar');
+    const cartBtn = document.querySelector('.cart-icon');
+
+    if (
+        cart.classList.contains('open') &&
+        !cart.contains(e.target) &&
+        !cartBtn.contains(e.target)
+    ) {
+        closeCart();
+    }
+});
+</script>
 </body>
 </html>

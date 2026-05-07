@@ -1,7 +1,11 @@
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#f4f6f9;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 .header {
     background: white;
@@ -11,8 +15,7 @@ body{
 .header-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 15px 60px;
+    padding: 15px 20px;
 }
 
 .logo a {
@@ -24,7 +27,8 @@ body{
 
 .nav {
     display: flex;
-    gap: 35px;
+    gap: 30px;
+    margin: 0 auto;
 }
 
 .nav-item {
@@ -86,8 +90,9 @@ header h1{
 }
 
 
-main{
-    padding:30px;
+main {
+    padding: 30px;
+    flex: 1;
 }
 
 .products{
@@ -129,16 +134,6 @@ footer{
 
 html, body {
     height: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-main {
-    flex: 1;
 }
 
 * {
@@ -225,7 +220,6 @@ main {
     margin: 40px auto;
 }
 
-/* Таби */
 .tabs {
     display: flex;
     gap: 25px;
@@ -233,9 +227,13 @@ main {
     font-weight: 500;
 }
 
-.tabs span {
+.tabs a {
     cursor: pointer;
     color: #555;
+}
+
+.tabs a:hover {
+    color: black;
 }
 
 .tabs .active {
@@ -243,7 +241,6 @@ main {
     color: black;
 }
 
-/* Основний блок */
 .product-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -253,7 +250,6 @@ main {
     border-radius: 10px;
 }
 
-/* Ліва */
 .product-left {
     display: flex;
     justify-content: center;
@@ -264,7 +260,6 @@ main {
     max-width: 350px;
 }
 
-/* Права */
 .product-name {
     font-size: 28px;
     margin-bottom: 10px;
@@ -276,7 +271,6 @@ main {
     margin-bottom: 10px;
 }
 
-/* Ціна */
 .price {
     font-size: 32px;
     color: #ff3c00;
@@ -326,7 +320,6 @@ main {
     color: #333;
 }
 
-/* Додатково */
 .meta {
     margin-top: 20px;
     color: #444;
@@ -337,4 +330,276 @@ main {
     margin-top: 20px;
     font-size: 12px;
     color: #888;
+}
+
+.reviews-block {
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.reviews-header h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.reviews-header span {
+    font-weight: 600;
+}
+
+.reviews-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.rating-box {
+    text-align: center;
+}
+
+.rating-big {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.stars {
+    color: #f5a623;
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.rating-small {
+    color: #777;
+    font-size: 14px;
+}
+
+.recommend-box {
+    text-align: center;
+}
+
+.percent {
+    font-size: 36px;
+    font-weight: bold;
+    color: #1a1a1a;
+}
+
+.text {
+    font-size: 13px;
+    color: #666;
+}
+
+.reviews-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.review-btn.primary {
+    background: #111;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 25px;
+}
+
+.review-btn.secondary {
+    background: white;
+    border: 1px solid #111;
+    padding: 10px 18px;
+    border-radius: 25px;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+.active-tab,
+.tab-link {
+    text-decoration: none;
+    color: black;
+    margin-right: 20px;
+    padding-bottom: 5px;
+}
+
+.tabs a {
+    text-decoration: none;
+    color: #555;
+    padding-bottom: 5px;
+    transition: 0.2s;
+}
+
+.tabs a:hover {
+    border-bottom: 2px solid black;
+    color: black;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-box {
+    background: white;
+    width: 500px;
+    padding: 30px;
+    border-radius: 16px;
+    position: relative;
+}
+
+.modal-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.modal-box input,
+.modal-box textarea,
+.modal-box select {
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.modal-box button {
+    padding: 14px;
+    border: none;
+    background: #111827;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.contact-btn {
+    margin-top: 15px;
+    padding: 12px 20px;
+    border: none;
+    background: white;
+    color: black;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.review-card {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.review-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.in-cart-btn {
+    background: #666;
+}
+
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 380px;
+    height: 100vh;
+    background: white;
+    z-index: 2000;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.2);
+    transition: 0.3s;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.close-cart {
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.cart-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.buy-btn {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+.review-btn {
+    cursor: pointer;
+    position: relative;
+    z-index: 5;
+}
+.cart-icon {
+    position: relative;
+    font-size: 28px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -10px;
+
+    background: red;
+    color: white;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+
+    font-size: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.reviews-block {
+    max-width: 1200px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+}
+.search {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

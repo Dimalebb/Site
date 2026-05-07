@@ -6,6 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="1406ba7f-7fa8-4a7c-a4fe-137ed2b7949b" name="Changes" comment="Laba 6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labs/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/labs/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labs/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/labs/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labs/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/labs/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/labs/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/labs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/labs/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/labs/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/labs/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/labs/product.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/labs/product.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,6 +138,8 @@
       <workItem from="1777754297478" duration="433000" />
       <workItem from="1777789604233" duration="7107000" />
       <workItem from="1777814719264" duration="1511000" />
+      <workItem from="1777825739234" duration="2375000" />
+      <workItem from="1778138865055" duration="18678000" />
     </task>
     <task id="LOCAL-00001" summary="Laba 2">
       <option name="closed" value="true" />
