@@ -5,43 +5,81 @@
 <head>
 <meta charset="UTF-8">
 <title>{% block title %}Ігрові ПК{% endblock %}</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
 <header class="header">
-<div class="header-container">
+    <div class="header-container">
 
-    <div class="logo">
-        <a href="{% url 'home' %}">PC Shop</a>
+        <a href="{% url 'home' %}" class="logo">
+            <div class="logo-box">P</div>
+
+            <div class="logo-text">
+                <h1>PC Shop</h1>
+                <p>Ігрова техніка</p>
+            </div>
+        </a>
+
+        <div class="search">
+            <form method="get">
+                <input
+                    type="text"
+                    name="q"
+                    placeholder="🔍 Пошук відеокарт, ноутбуків, ПК..."
+                    value="{{ request.GET.q }}"
+                >
+            </form>
+        </div>
+
+        <div class="header-right">
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'profile' %}" class="header-btn profile-btn">
+                    👤 Кабінет
+                </a>
+
+                <a href="{% url 'logout' %}" class="header-btn logout-btn">
+                    🚪 Вийти
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'login' %}" class="header-btn login-btn">
+                    👤 Вхід
+                </a>
+
+                <a href="{% url 'register' %}" class="header-btn register-btn">
+                    📝 Реєстрація
+                </a>
+
+            {% endif %}
+
+
+            <div class="cart-icon" onclick="openCart()">
+                🛒
+
+                <span class="cart-text">
+                    Кошик
+                </span>
+
+                <span class="cart-count">
+                    {{ cart_products|length }}
+                </span>
+            </div>
+
+
+            <div class="phone-box">
+                📞 0-800-123
+            </div>
+
+        </div>
+
     </div>
-
-    <nav class="nav">
-        <a href="{% url 'home' %}" class="nav-item">Головна</a>
-
-        {% for category in categories %}
-          <a href="?category={{ category.id }}" class="nav-item">
-                {{ category.name }}
-            </a>
-        {% endfor %}
-    </nav>
-    <div class="search">
-        <form method="get">
-            <input type="text" name="q" placeholder="Пошук" value="{{ request.GET.q }}">
-        </form>
-    </div>
-    <div class="cart-icon" onclick="openCart()">
-
-        🛒
-
-        {% if cart_products %}
-            <span class="cart-count">
-             {{ cart_products|length }}
-            </span>
-        {% endif %}
-    </div>
-</div>
 </header>
 
 <main>
@@ -108,15 +146,50 @@
 
         <div class="cart-item">
 
-            <img src="{{ item.image.url }}">
+            <img src="{{ item.product.image.url }}">
 
             <div>
 
-                <h4>{{ item.name }}</h4>
+                <h4>{{ item.product.name }}</h4>
+                {% if item.credit %}
 
-                <p>{{ item.price }} грн</p>
+                    <p style="color:#00B8B8; font-weight:600;">
+                        Кредит · {{ item.months }} міс.
+                    </p>
 
-                <a href="{% url 'remove_from_cart' item.id %}?cart=open">
+                    <p>
+                        {{ item.monthly }} грн/міс
+                    </p>
+
+                {% else %}
+
+                    <p>
+                        {{ item.product.price }} грн
+                    </p>
+
+                {% endif %}
+
+                <div style="margin-top: 6px;">
+                    <a href="{% url 'decrease_cart' item.product.id %}?item={{ item.key }}">
+                        −
+                    </a>
+
+                    <span style="margin: 0 8px;">
+                        {{ item.quantity }}
+                    </span>
+
+                    <a href="{% url 'increase_cart' item.product.id %}?item={{ item.key }}">
+                        +
+                    </a>
+                </div>
+
+                {% if item.credit %}
+                <p style="margin-top: 6px; font-size: 13px; color: #6b7280;">
+                    {{ item.months }} міс. · до {{ item.monthly }} грн
+                </p>
+                {% endif %}
+
+                <a href="{% url 'remove_from_cart' item.product.id %}?item={{ item.key }}&cart=open">
                     Видалити
                 </a>
 
@@ -131,7 +204,13 @@
         {% endfor %}
 
     </div>
-
+{% if cart_products %}
+    <div style="margin-top: 20px;">
+        <a href="{% url 'checkout' %}" class="buy-btn">
+            Оформити замовлення
+        </a>
+    </div>
+{% endif %}
 </div>
 <script>
 window.onload = function() {

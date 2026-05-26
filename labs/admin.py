@@ -13,7 +13,7 @@ class BrandAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'category', 'brand', 'created_at', 'updated_at')
+    list_display = ('name', 'price', 'category', 'brand','guarantee', 'created_at', 'updated_at')
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):

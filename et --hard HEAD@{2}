@@ -1,0 +1,21 @@
+[33m1a07c07[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{0}: commit: Laba 6
+[33mdda7695[m HEAD@{1}: reset: moving to HEAD~3
+[33m342bb25[m HEAD@{2}: commit: Laba 6
+[33m2645aec[m HEAD@{3}: reset: moving to HEAD~2
+[33mbaa3099[m HEAD@{4}: commit: Laba 6
+[33m1ce46f4[m HEAD@{5}: commit: Laba 6
+[33m2645aec[m HEAD@{6}: commit: Laba 5
+[33m09bb6ca[m HEAD@{7}: reset: moving to HEAD~3
+[33m5320a3f[m HEAD@{8}: commit: Laba 5
+[33m7851e30[m HEAD@{9}: commit: Laba 5
+[33m4689810[m HEAD@{10}: rebase (finish): returning to refs/heads/master
+[33m4689810[m HEAD@{11}: rebase (squash): Laba 5
+[33m0f1f559[m HEAD@{12}: rebase (squash): # This is a combination of 2 commits.
+[33m5e9ea03[m HEAD@{13}: rebase (start): checkout HEAD~6
+[33m7c63400[m HEAD@{14}: commit: Laba 5
+[33mf4b0638[m HEAD@{15}: commit: Laba 5
+[33m5e9ea03[m HEAD@{16}: commit: Laba 5
+[33m09bb6ca[m HEAD@{17}: commit: Laba 4
+[33mdda7695[m HEAD@{18}: commit: Laba 3
+[33m49a4f1d[m HEAD@{19}: commit: Laba 2
+[33m578dc5d[m HEAD@{20}: commit (initial): Laba 2

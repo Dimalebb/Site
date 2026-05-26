@@ -1,0 +1,34 @@
+{% extends "labs/base.html" %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <h2 class="auth-title">
+        Введіть код
+    </h2>
+
+    {% if error %}
+        <div class="auth-error">
+            {{ error }}
+        </div>
+    {% endif %}
+
+    <form method="post" class="auth-form">
+
+        {% csrf_token %}
+
+        <input type="text"
+               name="code"
+               placeholder="6-значний код"
+               required>
+
+        <button type="submit" class="auth-btn">
+            Підтвердити
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

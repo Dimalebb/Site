@@ -21,10 +21,10 @@
 
             <div class="price-block">
                 <div class="price">{{ product.price }} грн</div>
-                <div class="credit">Від 500 грн/міс</div>
+                <div class="credit">Від {{ monthly_payment }} грн/міс</div>
             </div>
 
-            {% if product.id in cart %}
+            {% if product.id|stringformat:"s" in cart %}
 
             <button class="buy-btn in-cart-btn" onclick="openCart()">
             В кошику
@@ -36,19 +36,21 @@
                class="buy-btn"
                onclick="openCart()">
 
-                Купити
+                🛒 В кошик
 
             </a>
 
             {% endif %}
-            <a href="#" class="credit-link">Купити в кредит</a>
+            <a href="#" class="credit-link" onclick="openCreditModal()">
+                Купити в кредит
+            </a>
 
             <div class="short-info">
                 {{ product.category }} / {{ product.brand }}
             </div>
 
             <div class="meta">
-                <div>✔ Гарантія 12 міс</div>
+                <div>✔ Гарантія {{ product.guarantee }}  міс</div>
                 <div>↩ Повернення 14 днів</div>
             </div>
         </div>
@@ -129,9 +131,9 @@
 
             {% csrf_token %}
 
-            <input type="text" name="name" placeholder="Ваше ім’я" required>
+            <input type="text" name="name" maxlength="30" placeholder="Ваше ім’я" required>
 
-            <textarea name="text" placeholder="Ваш відгук" required></textarea>
+           <textarea name="text" placeholder="Ваш відгук" maxlength="500"></textarea>
 
             <select name="rating">
                 <option value="5">5</option>
@@ -150,4 +152,96 @@
     </div>
 
 </div>
+<div class="modal-overlay" id="creditModal">
+
+    <div class="modal-box credit-box">
+
+        <span class="close-modal" onclick="closeCreditModal()">
+            &times;
+        </span>
+
+        <h2 class="credit-heading">Вибір кредитної пропозиції</h2>
+
+        <div class="credit-row">
+
+            <div class="credit-col credit-name">
+                Кредит
+            </div>
+
+            <div class="credit-col credit-dropdown">
+
+                <div class="credit-current" onclick="toggleCreditDropdown()">
+                    <span id="creditCurrentText">10 міс.</span>
+                    <span>▾</span>
+                </div>
+
+                <div class="credit-options" id="creditOptions">
+                    <div onclick="setCreditMonths(3)">3 міс.</div>
+                    <div onclick="setCreditMonths(6)">6 міс.</div>
+                    <div onclick="setCreditMonths(9)">9 міс.</div>
+                    <div onclick="setCreditMonths(10)">10 міс.</div>
+                </div>
+
+            </div>
+
+            <div class="credit-col credit-payment">
+                <span class="credit-small">до</span>
+                <span id="creditMonthly" class="credit-big">{{ monthly_payment }}</span>
+                <span class="credit-currency">грн</span>
+            </div>
+
+            <div class="credit-col credit-conditions">
+                2-12 платежів: кредит
+            </div>
+
+        </div>
+
+        <a href="{% url 'add_to_cart' product.id %}?credit=1&months=10"
+           class="buy-btn credit-submit"
+           id="creditBuyLink">
+            Оформити замовлення
+        </a>
+
+    </div>
+
+</div>
+<script>
+function openCreditModal() {
+    document.getElementById('creditModal').style.display = 'flex';
+}
+
+function closeCreditModal() {
+    document.getElementById('creditModal').style.display = 'none';
+    document.getElementById('creditOptions').style.display = 'none';
+}
+
+function toggleCreditDropdown() {
+    const options = document.getElementById('creditOptions');
+
+    if (options.style.display === 'block') {
+        options.style.display = 'none';
+    } else {
+        options.style.display = 'block';
+    }
+}
+
+function setCreditMonths(months) {
+    const price = {{ product.price }};
+    const monthly = Math.ceil(price / months);
+
+    document.getElementById('creditMonthly').innerText = monthly;
+    document.getElementById('creditCurrentText').innerText = months + ' міс.';
+    document.getElementById('creditOptions').style.display = 'none';
+    document.getElementById('creditBuyLink').href =
+    "{% url 'add_to_cart' product.id %}?credit=1&months=" + months;
+}
+
+window.addEventListener('click', function(e) {
+    const dropdown = document.querySelector('.credit-dropdown');
+
+    if (dropdown && !dropdown.contains(e.target)) {
+        document.getElementById('creditOptions').style.display = 'none';
+    }
+});
+</script>
 {% endblock %}

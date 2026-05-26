@@ -1,0 +1,73 @@
+{% extends "labs/base.html" %}
+
+{% block content %}
+
+<div class="profile-page">
+
+    <div class="profile-header">
+        <h2>Мій кабінет</h2>
+        <p>Ваші замовлення та дані доставки</p>
+    </div>
+
+    {% for order in orders %}
+
+    <div class="order-card">
+
+        <div class="order-title">
+            Замовлення №{{ forloop.counter }}
+
+            {% if request.user.is_superuser %}
+                — {{ order.user.username }}
+            {% endif %}
+        </div>
+
+        <div class="order-date">
+            {{ order.created_at }}
+        </div>
+
+        <div class="order-info">
+            <p><b>ПІБ:</b> {{ order.full_name }}</p>
+            <p><b>Телефон:</b> {{ order.phone }}</p>
+            <p><b>Місто:</b> {{ order.city }}</p>
+            <p><b>Адреса:</b> {{ order.address }}</p>
+
+            {% if order.comment %}
+                <p><b>Коментар:</b> {{ order.comment }}</p>
+            {% endif %}
+        </div>
+
+        <div class="order-products">
+
+            {% for item in order.items.all %}
+
+                <div class="order-product">
+                    <span>{{ item.product.name }}</span>
+
+                    {% if item.credit %}
+                        <span>Кредит на {{ item.months }} міс. — {{ item.price }} грн × {{ item.quantity }}</span>
+                    {% else %}
+                        <span>Повна оплата — {{ item.price }} грн × {{ item.quantity }}</span>
+                    {% endif %}
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+        <div class="order-total">
+            Загальна сума: {{ order.total_price }} грн
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="empty-orders">
+        Немає замовлень
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}

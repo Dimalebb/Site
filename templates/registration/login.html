@@ -1,0 +1,22 @@
+{% extends "labs/base.html" %}
+
+{% block content %}
+<div class="auth-container">
+
+    <h2>Вхід</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Увійти</button>
+    </form>
+    <div style="margin-top: 15px;">
+
+        <a href="{% url 'forgot_password' %}">
+            Забули пароль?
+        </a>
+
+    </div>
+</div>
+{% endblock %}

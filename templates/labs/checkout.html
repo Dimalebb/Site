@@ -1,0 +1,60 @@
+{% extends "labs/base.html" %}
+
+{% block title %}Оформлення замовлення{% endblock %}
+
+{% block content %}
+
+<div class="checkout-page">
+
+    <div class="checkout-box">
+
+        <h2>Оформлення замовлення</h2>
+        <p class="checkout-subtitle">Введіть свої дані для доставки</p>
+
+        <form method="post" class="checkout-form">
+
+            {% csrf_token %}
+
+            <input type="text"
+                   name="full_name"
+                   placeholder="ПІБ"
+                   minlength="5"
+                   maxlength="100"
+                   required>
+
+            <input type="tel"
+                   name="phone"
+                   placeholder="+380XXXXXXXXX"
+                   pattern="^\+380[0-9]{9}$"
+                   title="Введіть номер у форматі +380XXXXXXXXX"
+                   required>
+
+            <input type="text"
+                   name="city"
+                   placeholder="Місто"
+                   minlength="2"
+                   maxlength="100"
+                   required>
+
+            <input type="text"
+                   name="address"
+                   placeholder="Адреса / Нова пошта"
+                   minlength="5"
+                   maxlength="200"
+                   required>
+
+            <textarea name="comment"
+                      placeholder="Коментар до замовлення"
+                      maxlength="500"></textarea>
+
+            <button type="submit" class="checkout-btn">
+                Підтвердити замовлення
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

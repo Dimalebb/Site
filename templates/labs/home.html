@@ -2,39 +2,75 @@
 
 {% block content %}
 
-<h2>Наші товари</h2>
+<div class="main-layout">
 
-<div class="products">
+    <aside class="sidebar">
 
-{% for product in products %}
-<a href="{% url 'product' product.id %}" class="card-link">
-<div class="shoe-card">
+        <h3>Категорії</h3>
 
-  <div class="shoe-img">
-    {% if product.image %}
-      <img src="{{ product.image.url }}">
-    {% endif %}
-  </div>
+        <a href="{% url 'home' %}" class="sidebar-link">
+            Всі товари
+        </a>
 
-  <div class="shoe-text">
-    <span class="shoe-title">
-        {{ product.name }}
-    </span>
+        {% for category in categories %}
+            <a href="{% url 'home' %}?category={{ category.id }}" class="sidebar-link">
+                {{ category.name }}
+            </a>
+        {% endfor %}
 
-    <span class="shoe-subtitle">
-        {{ product.brand }}
-    </span>
+    </aside>
 
-    <span class="shoe-price">
-        {{ product.price }} грн
-    </span>
-  </div>
+    <div class="main-content">
 
-</div>
-</a>
-{% empty %}
-<p>Товарів немає</p>
-{% endfor %}
+        <div class="home-title">
+            <h2>Наші товари</h2>
+        </div>
+
+        <div class="products">
+
+            {% for product in products %}
+
+            <a href="{% url 'product' product.id %}" class="card-link">
+
+                <div class="shoe-card">
+
+                    <div class="shoe-img">
+
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}">
+                        {% endif %}
+
+                    </div>
+
+                    <div class="shoe-text">
+
+                        <span class="shoe-title">
+                            {{ product.name }}
+                        </span>
+
+                        <span class="shoe-subtitle">
+                            {{ product.brand }}
+                        </span>
+
+                        <span class="shoe-price">
+                            {{ product.price }} грн
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+            {% empty %}
+
+            <p>Товарів немає</p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
 
 </div>
 
